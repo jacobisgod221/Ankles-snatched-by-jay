@@ -1,109 +1,279 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jacob's Arcade</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      width: 100%;
-      font-family: 'Press Start 2P', cursive;
-      background-color: black; /* solid black background */
-      color: white;
+      background: black;
+      color: #ffffff;
+      font-family: "Press Start 2P", monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Clock */
+    #clock {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #4da6ff;
+    }
+
+    /* Bible Verse */
+    #verse {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #a8d0ff;
+      text-align: center;
+      width: 90%;
+    }
+
+    /* Header */
+    h1 {
+      font-size: 32px;
+      color: #4da6ff;
+      text-shadow: 0 0 10px #0b488e;
+      margin: 20px 0;
       text-align: center;
     }
-    h1 {
-      font-size: 3em;
-      margin: 40px 0 20px;
-      color: #00bfff; /* bright blue */
-      text-shadow: 2px 2px #000;
-    }
-    .games-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+
+    /* Game grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 30px;
-      padding: 20px;
+      width: 90%;
+      max-width: 900px;
+      margin-top: 30px;
     }
+
     .game {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 120px;
-      transition: transform 0.3s;
+      cursor: pointer;
     }
-    .game-link {
-      font-size: 3em;
+
+    .icon {
+      font-size: 60px;
+      background: #111;
+      padding: 20px;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #4da6ff;
+    }
+
+    .label {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #4da6ff;
+    }
+
+    /* Socials */
+    .socials {
+      margin-top: 50px;
+      font-size: 16px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .socials a {
+      color: #4da6ff;
       text-decoration: none;
-      color: #fff;
-      transition: transform 0.3s, color 0.3s, text-shadow 0.3s;
+      transition: 0.3s;
     }
-    .game-link:hover {
-      transform: scale(1.2);
-      color: #00bfff;
-      text-shadow: 0 0 8px #00bfff, 0 0 16px #00bfff;
+
+    .socials a:hover {
+      text-shadow: 0 0 10px #4da6ff;
     }
-    .game-title {
-      margin-top: 8px;
-      font-size: 0.65em;
-      color: #00bfff;
-      text-shadow: 1px 1px #000;
-      width: 100px;
-      word-wrap: break-word;
-      line-height: 1.2em;
+
+    /* Customization Button */
+    #customizeBtn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: #4da6ff;
+      color: black;
+      border: none;
+      font-family: inherit;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    #customizeBtn:hover {
+      background: #75bdff;
     }
   </style>
 </head>
 <body>
+
+  <div id="clock">Loading time...</div>
+  <div id="verse">Loading verse...</div>
+
   <h1>Welcome to Jacob's Arcade</h1>
 
-  <div class="games-container">
-    <div class="game">
-      <a class="game-link" href="1v1.LoL.html" target="_blank">🎮</a>
-      <div class="game-title">1v1 LoL</div>
+  <button id="customizeBtn" onclick="alert('Customization menu coming soon!')">Customize Homepage</button>
+
+  <div class="grid" id="gameGrid">
+    <!-- Example game item (repeat for each game) -->
+    <div class="game" onclick="location.href='1v1.LoL.html'">
+      <div class="icon">🎮</div>
+      <div class="label">1v1.LOL</div>
     </div>
-    <div class="game">
-      <a class="game-link" href="Bad Parenting 1.html" target="_blank">🎮</a>
-      <div class="game-title">Bad Parenting 1</div>
-    </div>
-    <div class="game">
-      <a class="game-link" href="Baldi's Basics.html" target="_blank">🎮</a>
-      <div class="game-title">Baldi's Basics</div>
-    </div>
-    <div class="game">
-      <a class="game-link" href="Baseball Bros.html" target="_blank">🎮</a>
-      <div class="game-title">Baseball Bros</div>
-    </div>
-    <div class="game">
-      <a class="game-link" href="Football Bros.html" target="_blank">🎮</a>
-      <div class="game-title">Football Bros</div>
-    </div>
-    <div class="game">
-      <a class="game-link" href="Basket Bros.html" target="_blank">🎮</a>
-      <div class="game-title">Basket Bros</div>
-    </div>
-    <div class="game">
-      <a class="game-link" href="BitLife.html" target="_blank">🎮</a>
-      <div class="game-title">BitLife</div>
-    </div>
-    <div class="game">
-      <a class="game-link" href="Block Blast.html" target="_blank">🎮</a>
-      <div class="game-title">Block Blast</div>
-    </div>
-    <div class="game">
-      <a class="game-link" href="BuildNow.gg.html" target="_blank">🎮</a>
-      <div class="game-title">BuildNow.gg</div>
-    </div>
-    <div class="game">
-      <a class="game-link" href="Friday Night Funkin.html" target="_blank">🎮</a>
-      <div class="game-title">Friday Night Funkin</div>
-    </div>
-    <div class="game">
-      <a class="game-link" href="Kindergarten.html" target="_blank">🎮</a>
-      <div class="game-title">Kindergarten</div>
-    </div>
+  </div>
+
+  <div class="socials">
+    <a href="https://youtube.com/@jynxvfx" target="_blank">YouTube</a>
+    <a href="https://twitch.tv/jjonzenn" target="_blank">Twitch</a>
+    <a href="https://tiktok.com/@fearjnyx" target="_blank">TikTok</a>
+  </div>
+
+<script>
+  /* -------- CLOCK -------- */
+  function updateClock() {
+    const now = new Date();
+    document.getElementById("clock").textContent = now.toLocaleTimeString();
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  /* -------- DAILY BIBLE VERSE -------- */
+  const verses = [
+    "I can do all things through Christ who strengthens me. – Philippians 4:13",
+    "Trust in the Lord with all your heart. – Proverbs 3:5",
+    "Be strong and courageous. – Joshua 1:9",
+    "The Lord is my shepherd; I shall not want. – Psalm 23:1",
+    "Walk by faith, not by sight. – 2 Corinthians 5:7"
+  ];
+
+  function loadDailyVerse() {
+    const dayIndex = Math.floor(Date.now() / 86400000) % verses.length;
+    document.getElementById("verse").textContent = verses[dayIndex];
+  }
+  loadDailyVerse();
+</script>
+
+  <!-- Added animations and clickable game actions placeholder -->
+  <script>
+    // Simple fade-in animation for game cards
+    document.querySelectorAll('.game-card').forEach(card => {
+      card.style.opacity = 0;
+      setTimeout(() => {
+        card.style.transition = 'opacity 1s ease';
+        card.style.opacity = 1;
+      }, 200);
+    });
+
+    // Modify click behavior so games do NOT auto-open
+    document.querySelectorAll('.game-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const gameUrl = card.getAttribute('data-url');
+        const panel = document.getElementById('gamePanel');
+        const iframe = document.getElementById('gameFrame');
+        iframe.src = gameUrl;
+        panel.style.display = 'block';
+      });
+    });
+
+    function openFullscreen() {
+      const iframe = document.getElementById('gameFrame');
+      if (iframe.requestFullscreen) iframe.requestFullscreen();
+    }
+
+    function openAboutBlank() {
+      const iframe = document.getElementById('gameFrame');
+      const newWin = window.open('about:blank');
+      fetch(iframe.src).then(r => r.text()).then(html => newWin.document.write(html));
+    }
+
+    function openBlob() {
+      const iframe = document.getElementById('gameFrame');
+      fetch(iframe.src).then(r => r.text()).then(html => {
+        const blob = new Blob([html], {type:'text/html'});
+        const url = URL.createObjectURL(blob);
+        window.open(url);
+      });
+    }
+  </script>
+  <!-- Loading Screen -->
+  <div id="loadingScreen" style="display:none; position:fixed; inset:0; background:black; color:white; font-family:'Press Start 2P'; font-size:18px; display:flex; align-items:center; justify-content:center; flex-direction:column; z-index:9999;">
+    <div id="loadingMessage">Loading...</div>
+  </div>
+
+  <script>
+    const messages = [
+      "Skibidi toilet is overrated",
+      "I made this cuz I'm bored",
+      "I'm wasting my time with these messages",
+      "I'd rather win",
+      "Loading your epic game...",
+      "Almost there gamer...",
+      "Booting pixels...",
+      "Generating skill issues..."
+    ];
+
+    // Fade-in animations
+    document.querySelectorAll('.game-card').forEach(card => {
+      card.style.opacity = 0;
+      setTimeout(() => {
+        card.style.transition = 'opacity 1s ease, transform 0.6s ease';
+        card.style.opacity = 1;
+        card.style.transform = 'translateY(0)';
+      }, 200);
+      card.style.transform = 'translateY(20px)';
+    });
+
+    // Game opening behavior
+    document.querySelectorAll('.game-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const gameUrl = card.getAttribute('data-url');
+        const panel = document.getElementById('gamePanel');
+        const iframe = document.getElementById('gameFrame');
+
+        // Show loading screen with random messages
+        const loading = document.getElementById('loadingScreen');
+        const msg = document.getElementById('loadingMessage');
+        msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+        loading.style.display = 'flex';
+
+        setTimeout(() => {
+          iframe.src = gameUrl;
+          panel.style.display = 'block';
+          loading.style.display = 'none';
+        }, 1500);
+      });
+    });
+
+    function openFullscreen() {
+      const iframe = document.getElementById('gameFrame');
+      if (iframe.requestFullscreen) iframe.requestFullscreen();
+    }
+
+    function openAboutBlank() {
+      const iframe = document.getElementById('gameFrame');
+      const newWin = window.open('about:blank');
+      fetch(iframe.src).then(r => r.text()).then(html => newWin.document.write(html));
+    }
+
+    function openBlob() {
+      const iframe = documt.getElementById('gameFrame');
+      fetch(iframe.src).then(r => r.text()).then(html => {
+        const blob = new Blob([html], {type:'text/html'});
+        const url = URL.createObjectURL(blob);
+        window.open(url);
+      });
+    }
+  </script>
+</body>
+</html    </div>
     <div class="game">
       <a class="game-link" href="Kindergarten 2.html" target="_blank">🎮</a>
       <div class="game-title">Kindergarten 2</div>
