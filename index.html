@@ -1,56 +1,127 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Games</title>
+  <title>Jacob's Arcade</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      font-family: 'Press Start 2P', cursive;
+      color: white;
+      background: url('https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif') no-repeat center center fixed;
+      background-size: cover;
       text-align: center;
-      padding: 50px;
     }
     h1 {
-      color: #333;
+      font-size: 3em;
+      margin: 40px 0 20px;
+      text-shadow: 2px 2px #000;
     }
-    ul {
-      list-style: none;
-      padding: 0;
+    .games-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px;
     }
-    li {
-      margin: 15px 0;
+    .game {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100px;
+      transition: transform 0.3s;
     }
-    a {
+    .game-link {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      font-size: 3em;
+      cursor: pointer;
       text-decoration: none;
-      font-size: 18px;
-      color: white;
-      background-color: #007bff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
+      transition: transform 0.3s, text-shadow 0.3s;
     }
-    a:hover {
-      background-color: #0056b3;
+    .game-link span {
+      position: absolute;
+      bottom: -25px;
+      color: #0ff; /* neon cyan text */
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.6em;
+      text-align: center;
+      text-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      width: 120px;
+    }
+    .game-link:hover {
+      transform: scale(1.2);
+      text-shadow:
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff;
+    }
+    .game-link:hover span {
+      opacity: 1;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to My Games!</h1>
-  <ul>
-    <li><a href="1v1.LoL.html" target="_blank">1v1 LoL</a></li>
-    <li><a href="Bad Parenting 1.html" target="_blank">Bad Parenting 1</a></li>
-    <li><a href="Baldi's Basics.html" target="_blank">Baldi's Basics</a></li>
-    <li><a href="Baseball Bros.html" target="_blank">Baseball Bros</a></li>
-    <li><a href="Football Bros.html" target="_blank">Football Bros</a></li>
-    <li><a href="Basket Bros.html" target="_blank">Basket Bros</a></li>
-    <li><a href="BitLife.html" target="_blank">BitLife</a></li>
-    <li><a href="Block Blast.html" target="_blank">Block Blast</a></li>
-    <li><a href="BuildNow.gg.html" target="_blank">BuildNow.gg</a></li>
-    <li><a href="Friday Night Funkin.html" target="_blank">Friday Night Funkin</a></li>
-    <li><a href="Kindergarten.html" target="_blank">Kindergarten</a></li>
-    <li><a href="Kindergarten 2.html" target="_blank">Kindergarten 2</a></li>
-    <li><a href="Kindergarten 3.html" target="_blank">Kindergarten 3</a></li>
-    <li><a href="Minecraft 1.21.4.html" target="_blank">Minecraft 1.21.4</a></li>
-    <li><a href="Subway Surfers_ San Francisco.html" target="_blank">Subway Surfers: San Francisco</a></li>
-  </ul>
+  <h1>Welcome to Jacob's Arcade</h1>
+
+  <div class="games-container">
+    <div class="game">
+      <a class="game-link" href="1v1.LoL.html" target="_blank">🎮<span>🚀 1v1 LoL</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="Bad Parenting 1.html" target="_blank">🎮<span>🚀 Bad Parenting 1</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="Baldi's Basics.html" target="_blank">🎮<span>🚀 Baldi's Basics</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="Baseball Bros.html" target="_blank">🎮<span>🚀 Baseball Bros</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="Football Bros.html" target="_blank">🎮<span>🚀 Football Bros</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="Basket Bros.html" target="_blank">🎮<span>🚀 Basket Bros</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="BitLife.html" target="_blank">🎮<span>🚀 BitLife</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="Block Blast.html" target="_blank">🎮<span>🚀 Block Blast</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="BuildNow.gg.html" target="_blank">🎮<span>🚀 BuildNow.gg</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="Friday Night Funkin.html" target="_blank">🎮<span>🚀 Friday Night Funkin</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="Kindergarten.html" target="_blank">🎮<span>🚀 Kindergarten</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="Kindergarten 2.html" target="_blank">🎮<span>🚀 Kindergarten 2</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="Kindergarten 3.html" target="_blank">🎮<span>🚀 Kindergarten 3</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="Minecraft 1.21.4.html" target="_blank">🎮<span>🚀 Minecraft 1.21.4</span></a>
+    </div>
+    <div class="game">
+      <a class="game-link" href="Subway Surfers_ San Francisco.html" target="_blank">🎮<span>🚀 Subway Surfers</span></a>
+    </div>
+  </div>
 </body>
 </html>
