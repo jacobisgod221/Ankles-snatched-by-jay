@@ -1,280 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jacob's Arcade</title>
-  <style>
-  /* Force loading screen hidden on load */
-  #loadingScreen { display: none !important; }
-    body {
-      margin: 0;
-      padding: 0;
-      background: black;
-      color: #ffffff;
-      font-family: "Press Start 2P", monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* Clock */
-    #clock {
-      margin-top: 20px;
-      font-size: 20px;
-      color: #4da6ff;
-    }
-
-    /* Bible Verse */
-    #verse {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #a8d0ff;
-      text-align: center;
-      width: 90%;
-    }
-
-    /* Header */
-    h1 {
-      font-size: 32px;
-      color: #4da6ff;
-      text-shadow: 0 0 10px #0b488e;
-      margin: 20px 0;
-      text-align: center;
-    }
-
-    /* Game grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 30px;
-      width: 90%;
-      max-width: 900px;
-      margin-top: 30px;
-    }
-
-    .game {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .icon {
-      font-size: 60px;
-      background: #111;
-      padding: 20px;
-      border-radius: 20px;
-      transition: 0.3s;
-    }
-
-    .icon:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px #4da6ff;
-    }
-
-    .label {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #4da6ff;
-    }
-
-    /* Socials */
-    .socials {
-      margin-top: 50px;
-      font-size: 16px;
-      display: flex;
-      gap: 20px;
-    }
-
-    .socials a {
-      color: #4da6ff;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .socials a:hover {
-      text-shadow: 0 0 10px #4da6ff;
-    }
-
-    /* Customization Button */
-    #customizeBtn {
-      margin-top: 30px;
-      padding: 10px 20px;
-      background: #4da6ff;
-      color: black;
-      border: none;
-      font-family: inherit;
-      cursor: pointer;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
-
-    #customizeBtn:hover {
-      background: #75bdff;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jacob's Arcade</title>
+<style>
+html,body{height:100%;margin:0;padding:0;background:black;color:#fff;font-family:"Press Start 2P", monospace}
+.container{max-width:1100px;margin:0 auto;padding:18px;display:flex;flex-direction:column;align-items:center}
+#clock{margin-top:8px;font-size:18px;color:#4da6ff}
+#verse{margin-top:8px;font-size:13px;color:#a8d0ff;text-align:center;width:90%}
+#mainTitle{font-size:32px;color:#00bfff;text-shadow:0 0 10px #0b488e;margin:18px 0;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;width:100%;max-width:980px;margin-top:18px}
+.game-card{background:#0f0f0f;border-radius:12px;padding:14px;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:transform .25s,box-shadow .25s}
+.game-card:hover{transform:translateY(-6px);box-shadow:0 8px 24px rgba(0,191,255,.08)}
+.game-icon{font-size:48px;background:#111;padding:12px;border-radius:14px}
+.game-title{text-align:center;margin-top:10px;font-size:12px;color:#00bfff;line-height:1.1;max-width:120px;word-wrap:break-word}
+#gamePanel{display:none;position:fixed;inset:6% 6% 8% 6%;background:#000;border:3px solid #222;z-index:9998;border-radius:8px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+#gameFrame{width:100%;height:calc(100% - 60px);border:0;background:#000}
+#gamePanelBar{height:60px;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#070707;color:#ddd}
+.gp-controls{display:flex;gap:8px;align-items:center}
+.gp-btn{background:#111;color:#fff;border:1px solid #333;padding:8px 10px;border-radius:6px;cursor:pointer}
+#customizePanel{display:none;width:320px;background:#0b0b0b;border:2px solid #2b1f4a;padding:12px;border-radius:8px;margin-top:14px}
+#customizePanel label{display:block;margin:8px 0;font-size:12px;color:#cfdcff}
+#customizePanel input[type=color]{width:48px;height:32px;border:0;padding:0}
+#customizePanel select{width:100%;padding:6px;border-radius:6px;background:#111;color:#fff;border:1px solid #333}
+#customizeBtn{margin-top:12px;padding:10px 16px;background:#4da6ff;color:black;border:none;border-radius:8px;cursor:pointer}
+.socials{margin-top:18px;width:100%;max-width:980px;border-top:1px solid #111;padding-top:12px;display:flex;flex-direction:column;align-items:center}
+.socials h3{margin:6px;color:#00bfff}
+.social-icons{display:flex;gap:12px}
+.social-link{display:flex;align-items:center;gap:8px;padding:8px 10px;background:#0e0e0e;border-radius:8px;color:#cfeeff;text-decoration:none;border:1px solid #222}
+.social-link svg{width:18px;height:18px}
+#loadingScreen{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);color:#fff;z-index:10001;align-items:center;justify-content:center;flex-direction:column}
+#loadingMessage{font-size:18px;margin-top:12px;color:#d0d0ff}
+@media (max-width:480px){#mainTitle{font-size:20px}.game-title{font-size:11px}}
+</style>
 </head>
 <body>
-
-  <div id="clock">Loading time...</div>
+<div class="container">
+  <div id="clock">--:--:--</div>
   <div id="verse">Loading verse...</div>
+  <h1 id="mainTitle">Welcome to Jacob's Arcade</h1>
 
-  <h1>Welcome to Jacob's Arcade</h1>
+  <button id="customizeToggle" onclick="toggleCustomize()" class="gp-btn">Customize Homepage</button>
 
-  <button id="customizeBtn" onclick="alert('Customization menu coming soon!')">Customize Homepage</button>
-
-  <div class="grid" id="gameGrid">
-    <!-- Example game item (repeat for each game) -->
-    <div class="game" onclick="location.href='1v1.LoL.html'">
-      <div class="icon">🎮</div>
-      <div class="label">1v1.LOL</div>
+  <div id="customizePanel">
+    <label>Background Color: <input id="bgPicker" type="color" value="#000000"></label>
+    <label>Title Color: <input id="titlePicker" type="color" value="#00bfff"></label>
+    <label>Accent Color: <input id="accentPicker" type="color" value="#00bfff"></label>
+    <label>Theme: <select id="themeSelect"><option value="default">Default</option><option value="neon">Neon</option><option value="retro">Retro</option></select></label>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button class="gp-btn" onclick="applyCustom(true)">Apply & Save</button>
+      <button class="gp-btn" onclick="resetCustom()">Reset</button>
     </div>
   </div>
 
-  <div class="socials">
-    <a href="https://youtube.com/@jynxvfx" target="_blank">YouTube</a>
-    <a href="https://twitch.tv/jjonzenn" target="_blank">Twitch</a>
-    <a href="https://tiktok.com/@fearjnyx" target="_blank">TikTok</a>
+  <div class="grid" id="gameGrid">
+    <div class="game-card" data-url="1v1.LoL.html"><div class="game-icon">🎮</div><div class="game-title">1v1.LoL</div></div>
+    <div class="game-card" data-url="Bad Parenting 1.html"><div class="game-icon">🎮</div><div class="game-title">Bad Parenting 1</div></div>
+    <div class="game-card" data-url="Baldi's Basics.html"><div class="game-icon">🎮</div><div class="game-title">Baldi's Basics</div></div>
+    <div class="game-card" data-url="Baseball Bros.html"><div class="game-icon">🎮</div><div class="game-title">Baseball Bros</div></div>
+    <div class="game-card" data-url="Football Bros.html"><div class="game-icon">🎮</div><div class="game-title">Football Bros</div></div>
+    <div class="game-card" data-url="Basket Bros.html"><div class="game-icon">🎮</div><div class="game-title">Basket Bros</div></div>
+    <div class="game-card" data-url="BitLife.html"><div class="game-icon">🎮</div><div class="game-title">BitLife</div></div>
+    <div class="game-card" data-url="Block Blast.html"><div class="game-icon">🎮</div><div class="game-title">Block Blast</div></div>
+    <div class="game-card" data-url="BuildNow.gg.html"><div class="game-icon">🎮</div><div class="game-title">BuildNow.gg</div></div>
+    <div class="game-card" data-url="Friday Night Funkin.html"><div class="game-icon">🎮</div><div class="game-title">Friday Night Funkin</div></div>
+    <div class="game-card" data-url="Kindergarten.html"><div class="game-icon">🎮</div><div class="game-title">Kindergarten</div></div>
+    <div class="game-card" data-url="Kindergarten 2.html"><div class="game-icon">🎮</div><div class="game-title">Kindergarten 2</div></div>
+    <div class="game-card" data-url="Kindergarten 3.html"><div class="game-icon">🎮</div><div class="game-title">Kindergarten 3</div></div>
+    <div class="game-card" data-url="Minecraft 1.21.4.html"><div class="game-icon">🎮</div><div class="game-title">Minecraft 1.21.4</div></div>
+    <div class="game-card" data-url="Subway Surfers_ San Francisco.html"><div class="game-icon">🎮</div><div class="game-title">Subway Surfers: SF</div></div>
   </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-  /* -------- CLOCK -------- */
-  function updateClock() {
-    const now = new Date();
-    document.getElementById("clock").textContent = now.toLocaleTimeString();
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
+  <div class="socials">
+    <h3>Socials</h3>
+    <div class="social-icons">
+      <a class="social-link" href="https://youtube.com/@jynxgotaim" target="_blank">🎥 YouTube</a>
+      <a class="social-link" href="https://twitch.tv/jjonzenn" target="_blank">🟣 Twitch</a>
+      <a class="social-link" href="https://tiktok.com/@fearjnyx" target="_blank">🎵 TikTok</a>
+    </div>
+  </div>
+</div>
 
-  /* -------- DAILY BIBLE VERSE -------- */
-  const verses = [
+<div id="gamePanel">
+  <div id="gamePanelBar">
+    <div class="gp-controls">
+      <button class="gp-btn" onclick="closeGame()">Close</button>
+      <button class="gp-btn" onclick="openFullscreen()">Fullscreen</button>
+      <button class="gp-btn" onclick="openAboutBlank()">Open about:blank</button>
+      <button class="gp-btn" onclick="openBlob()">Open blob</button>
+    </div>
+    <div style="color:#99cfff">Game Window</div>
+  </div>
+  <iframe id="gameFrame" src="" sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
+</div>
+
+<div id="loadingScreen">
+  <div style="font-family:'Press Start 2P';font-size:20px;color:#fff">Loading...</div>
+  <div id="loadingMessage">Preparing...</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  function updateClock(){const now=new Date();document.getElementById('clock').textContent=now.toLocaleTimeString();}
+  setInterval(updateClock,1000);updateClock();
+
+  const verses=[
     "I can do all things through Christ who strengthens me. – Philippians 4:13",
     "Trust in the Lord with all your heart. – Proverbs 3:5",
     "Be strong and courageous. – Joshua 1:9",
     "The Lord is my shepherd; I shall not want. – Psalm 23:1",
     "Walk by faith, not by sight. – 2 Corinthians 5:7"
   ];
+  const dayIndex=Math.floor(Date.now()/86400000)%verses.length;
+  document.getElementById('verse').textContent=verses[dayIndex];
 
-  function loadDailyVerse() {
-    const dayIndex = Math.floor(Date.now() / 86400000) % verses.length;
-    document.getElementById("verse").textContent = verses[dayIndex];
-  }
-  loadDailyVerse();
+  const messages=[
+    "Skibidi toilet is overrated",
+    "I made this cuz I'm bored",
+    "I'm wasting my time with these messages",
+    "I'd rather win",
+    "Loading your epic game...",
+    "Almost there gamer...",
+    "Booting pixels...",
+    "Generating skill issues..."
+  ];
+
+  document.querySelectorAll('.game-card').forEach(card=>{
+    card.addEventListener('click',()=>{
+      const url=card.getAttribute('data-url');
+      const loading=document.getElementById('loadingScreen');
+      const msg=document.getElementById('loadingMessage');
+      msg.textContent=messages[Math.floor(Math.random()*messages.length)];
+      loading.style.display='flex';
+      setTimeout(()=>{
+        document.getElementById('gameFrame').src=url;
+        document.getElementById('gamePanel').style.display='block';
+        loading.style.display='none';
+      },1200);
+    });
   });
+
+  const saved=JSON.parse(localStorage.getItem('jacob_custom')||'null');
+  if(saved){
+    document.body.style.background=saved.bg;
+    document.getElementById('mainTitle').style.color=saved.title;
+    document.querySelectorAll('.game-title').forEach(el=>el.style.color=saved.accent);
+  }
+
+  window.toggleCustomize=()=>{const p=document.getElementById('customizePanel');p.style.display=p.style.display==='block'?'none':'block'}
+  window.applyCustom=(save)=>{const bg=document.getElementById('bgPicker').value;const title=document.getElementById('titlePicker').value;const accent=document.getElementById('accentPicker').value;document.body.style.background=bg;document.getElementById('mainTitle').style.color=title;document.querySelectorAll('.game-title').forEach(el=>el.style.color=accent);if(save){localStorage.setItem('jacob_custom',JSON.stringify({bg,title,accent}));}}
+  window.resetCustom=()=>{localStorage.removeItem('jacob_custom');location.reload()}
+  window.closeGame=()=>{document.getElementById('gamePanel').style.display='none';document.getElementById('gameFrame').src=''}
+  window.openFullscreen=()=>{const iframe=document.getElementById('gameFrame');if(iframe.requestFullscreen) iframe.requestFullscreen()}
+  window.openAboutBlank=()=>{const iframe=document.getElementById('gameFrame');const newWin=window.open('about:blank');fetch(iframe.src).then(r=>r.text()).then(html=>newWin.document.write(html))}
+  window.openBlob=()=>{const iframe=document.getElementById('gameFrame');fetch(iframe.src).then(r=>r.text()).then(html=>{const blob=new Blob([html],{type:'text/html'});const url=URL.createObjectURL(blob);window.open(url)})}
+});
 </script>
-
-  <!-- Added animations and clickable game actions placeholder -->
-  <script>
-    // Simple fade-in animation for game cards
-    document.querySelectorAll('.game-card').forEach(card => {
-      card.style.opacity = 0;
-      setTimeout(() => {
-        card.style.transition = 'opacity 1s ease';
-        card.style.opacity = 1;
-      }, 200);
-    });
-
-    // Modify click behavior so games do NOT auto-open
-    document.querySelectorAll('.game-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const gameUrl = card.getAttribute('data-url');
-        const panel = document.getElementById('gamePanel');
-        const iframe = document.getElementById('gameFrame');
-        iframe.src = gameUrl;
-        panel.style.display = 'block';
-      });
-    });
-
-    function openFullscreen() {
-      const iframe = document.getElementById('gameFrame');
-      if (iframe.requestFullscreen) iframe.requestFullscreen();
-    }
-
-    function openAboutBlank() {
-      const iframe = document.getElementById('gameFrame');
-      const newWin = window.open('about:blank');
-      fetch(iframe.src).then(r => r.text()).then(html => newWin.document.write(html));
-    }
-
-    function openBlob() {
-      const iframe = document.getElementById('gameFrame');
-      fetch(iframe.src).then(r => r.text()).then(html => {
-        const blob = new Blob([html], {type:'text/html'});
-        const url = URL.createObjectURL(blob);
-        window.open(url);
-      });
-    }
-  </script>
-  <!-- Loading Screen -->
-  <div id="loadingScreen" style="display:none; position:fixed; inset:0; background:black; color:white; font-family:'Press Start 2P'; font-size:18px; display:flex; align-items:center; justify-content:center; flex-direction:column; z-index:9999;">
-    <div id="loadingMessage">Loading...</div>
-  </div>
-
-  <script>
-    const messages = [
-      "Skibidi toilet is overrated",
-      "I made this cuz I'm bored",
-      "I'm wasting my time with these messages",
-      "I'd rather win",
-      "Loading your epic game...",
-      "Almost there gamer...",
-      "Booting pixels...",
-      "Generating skill issues..."
-    ];
-
-    // Fade-in animations
-    document.querySelectorAll('.game-card').forEach(card => {
-      card.style.opacity = 0;
-      setTimeout(() => {
-        card.style.transition = 'opacity 1s ease, transform 0.6s ease';
-        card.style.opacity = 1;
-        card.style.transform = 'translateY(0)';
-      }, 200);
-      card.style.transform = 'translateY(20px)';
-    });
-
-    // Game opening behavior
-    document.querySelectorAll('.game-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const gameUrl = card.getAttribute('data-url');
-        const panel = document.getElementById('gamePanel');
-        const iframe = document.getElementById('gameFrame');
-
-        // Show loading screen with random messages
-        const loading = document.getElementById('loadingScreen');
-        const msg = document.getElementById('loadingMessage');
-        msg.textContent = messages[Math.floor(Math.random() * messages.length)];
-        loading.style.display = 'flex';
-
-        setTimeout(() => {
-          iframe.src = gameUrl;
-          panel.style.display = 'block';
-          loading.style.display = 'none';
-        }, 1500);
-      });
-    });
-
-    function openFullscreen() {
-      const iframe = document.getElementById('gameFrame');
-      if (iframe.requestFullscreen) iframe.requestFullscreen();
-    }
-
-    function openAboutBlank() {
-      const iframe = document.getElementById('gameFrame');
-      const newWin = window.open('about:blank');
-      fetch(iframe.src).then(r => r.text()).then(html => newWin.document.write(html));
-    }
-
-    function openBlob() {
-      const iframe = document.getElementById('gameFrame');
-      fetch(iframe.src).then(r => r.text()).then(html => {
-        const blob = new Blob([html], {type:'text/html'});
-        const url = URL.createObjectURL(blob);
-        window.open(url);
-      });
-    }
-  </script>
 </body>
 </html>
