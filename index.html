@@ -8,14 +8,15 @@
       margin: 0;
       padding: 0;
       font-family: 'Press Start 2P', cursive;
-      background: url('assets/galaxy.gif') no-repeat center center fixed;
-background-size: cover;
-
+      color: #ddd;
+      background: url('https://raw.githubusercontent.com/astritpro/Galaxy-Backgrounds/main/galaxy-purple.gif') no-repeat center center fixed;
+      background-size: cover;
       text-align: center;
     }
     h1 {
       font-size: 3em;
       margin: 40px 0 20px;
+      color: #d8b0ff;
       text-shadow: 2px 2px #000;
     }
     .games-container {
@@ -29,7 +30,7 @@ background-size: cover;
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 100px;
+      width: 120px;
       transition: transform 0.3s;
     }
     .game-link {
@@ -40,36 +41,24 @@ background-size: cover;
       width: 100px;
       height: 100px;
       font-size: 3em;
-      cursor: pointer;
+      color: #e0d0ff;
       text-decoration: none;
-      transition: transform 0.3s, text-shadow 0.3s;
-    }
-    .game-link span {
-      position: absolute;
-      bottom: -25px;
-      color: #0ff; /* neon cyan text */
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.6em;
-      text-align: center;
-      text-shadow:
-        0 0 5px #0ff,
-        0 0 10px #0ff,
-        0 0 20px #0ff,
-        0 0 40px #0ff;
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
-      width: 120px;
+      transition: transform 0.3s, color 0.3s, text-shadow 0.3s;
     }
     .game-link:hover {
       transform: scale(1.2);
+      color: #ffffff;
       text-shadow:
-        0 0 10px #0ff,
-        0 0 20px #0ff,
-        0 0 40px #0ff;
+        0 0 8px #c880ff,
+        0 0 16px #c880ff;
     }
-    .game-link:hover span {
-      opacity: 1;
+    .game-title {
+      margin-top: 8px;
+      font-size: 0.6em;
+      color: #ddd;
+      text-shadow: 1px 1px #000;
+      width: 120px;
+      word-wrap: break-word;
     }
   </style>
 </head>
@@ -78,49 +67,64 @@ background-size: cover;
 
   <div class="games-container">
     <div class="game">
-      <a class="game-link" href="1v1.LoL.html" target="_blank">🎮<span>🚀 1v1 LoL</span></a>
+      <a class="game-link" href="1v1.LoL.html" target="_blank">🎮</a>
+      <div class="game-title">1v1 LoL</div>
     </div>
     <div class="game">
-      <a class="game-link" href="Bad Parenting 1.html" target="_blank">🎮<span>🚀 Bad Parenting 1</span></a>
+      <a class="game-link" href="Bad Parenting 1.html" target="_blank">🎮</a>
+      <div class="game-title">Bad Parenting 1</div>
     </div>
     <div class="game">
-      <a class="game-link" href="Baldi's Basics.html" target="_blank">🎮<span>🚀 Baldi's Basics</span></a>
+      <a class="game-link" href="Baldi's Basics.html" target="_blank">🎮</a>
+      <div class="game-title">Baldi's Basics</div>
     </div>
     <div class="game">
-      <a class="game-link" href="Baseball Bros.html" target="_blank">🎮<span>🚀 Baseball Bros</span></a>
+      <a class="game-link" href="Baseball Bros.html" target="_blank">🎮</a>
+      <div class="game-title">Baseball Bros</div>
     </div>
     <div class="game">
-      <a class="game-link" href="Football Bros.html" target="_blank">🎮<span>🚀 Football Bros</span></a>
+      <a class="game-link" href="Football Bros.html" target="_blank">🎮</a>
+      <div class="game-title">Football Bros</div>
     </div>
     <div class="game">
-      <a class="game-link" href="Basket Bros.html" target="_blank">🎮<span>🚀 Basket Bros</span></a>
+      <a class="game-link" href="Basket Bros.html" target="_blank">🎮</a>
+      <div class="game-title">Basket Bros</div>
     </div>
     <div class="game">
-      <a class="game-link" href="BitLife.html" target="_blank">🎮<span>🚀 BitLife</span></a>
+      <a class="game-link" href="BitLife.html" target="_blank">🎮</a>
+      <div class="game-title">BitLife</div>
     </div>
     <div class="game">
-      <a class="game-link" href="Block Blast.html" target="_blank">🎮<span>🚀 Block Blast</span></a>
+      <a class="game-link" href="Block Blast.html" target="_blank">🎮</a>
+      <div class="game-title">Block Blast</div>
     </div>
     <div class="game">
-      <a class="game-link" href="BuildNow.gg.html" target="_blank">🎮<span>🚀 BuildNow.gg</span></a>
+      <a class="game-link" href="BuildNow.gg.html" target="_blank">🎮</a>
+      <div class="game-title">BuildNow.gg</div>
     </div>
     <div class="game">
-      <a class="game-link" href="Friday Night Funkin.html" target="_blank">🎮<span>🚀 Friday Night Funkin</span></a>
+      <a class="game-link" href="Friday Night Funkin.html" target="_blank">🎮</a>
+      <div class="game-title">Friday Night Funkin</div>
     </div>
     <div class="game">
-      <a class="game-link" href="Kindergarten.html" target="_blank">🎮<span>🚀 Kindergarten</span></a>
+      <a class="game-link" href="Kindergarten.html" target="_blank">🎮</a>
+      <div class="game-title">Kindergarten</div>
     </div>
     <div class="game">
-      <a class="game-link" href="Kindergarten 2.html" target="_blank">🎮<span>🚀 Kindergarten 2</span></a>
+      <a class="game-link" href="Kindergarten 2.html" target="_blank">🎮</a>
+      <div class="game-title">Kindergarten 2</div>
     </div>
     <div class="game">
-      <a class="game-link" href="Kindergarten 3.html" target="_blank">🎮<span>🚀 Kindergarten 3</span></a>
+      <a class="game-link" href="Kindergarten 3.html" target="_blank">🎮</a>
+      <div class="game-title">Kindergarten 3</div>
     </div>
     <div class="game">
-      <a class="game-link" href="Minecraft 1.21.4.html" target="_blank">🎮<span>🚀 Minecraft 1.21.4</span></a>
+      <a class="game-link" href="Minecraft 1.21.4.html" target="_blank">🎮</a>
+      <div class="game-title">Minecraft 1.21.4</div>
     </div>
     <div class="game">
-      <a class="game-link" href="Subway Surfers_ San Francisco.html" target="_blank">🎮<span>🚀 Subway Surfers</span></a>
+      <a class="game-link" href="Subway Surfers_ San Francisco.html" target="_blank">🎮</a>
+      <div class="game-title">Subway Surfers: SF</div>
     </div>
   </div>
 </body>
