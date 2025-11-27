@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jacob's Arcade</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 html,body{height:100%;margin:0;padding:0;background:black;color:#fff;font-family:"Press Start 2P", monospace}
 .container{max-width:1100px;margin:0 auto;padding:18px;display:flex;flex-direction:column;align-items:center}
@@ -11,26 +12,26 @@ html,body{height:100%;margin:0;padding:0;background:black;color:#fff;font-family
 #verse{margin-top:8px;font-size:13px;color:#a8d0ff;text-align:center;width:90%}
 #mainTitle{font-size:32px;color:#00bfff;text-shadow:0 0 10px #0b488e;margin:18px 0;text-align:center}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;width:100%;max-width:980px;margin-top:18px}
-.game-card{background:#0f0f0f;border-radius:12px;padding:14px;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:transform .25s,box-shadow .25s}
+.game-card{background:#0f0f0f;border-radius:12px;padding:14px;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:transform .25s,box-shadow .25s;font-family:'Press Start 2P'}
 .game-card:hover{transform:translateY(-6px);box-shadow:0 8px 24px rgba(0,191,255,.08)}
 .game-icon{font-size:48px;background:#111;padding:12px;border-radius:14px}
 .game-title{text-align:center;margin-top:10px;font-size:12px;color:#00bfff;line-height:1.1;max-width:120px;word-wrap:break-word}
-#gamePanel{display:none;position:fixed;inset:6% 6% 8% 6%;background:#000;border:3px solid #222;z-index:9998;border-radius:8px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+#gamePanel{display:none;position:fixed;inset:6% 6% 8% 6%;background:#000;border:3px solid #222;z-index:9998;border-radius:8px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.7);font-family:'Press Start 2P'}
 #gameFrame{width:100%;height:calc(100% - 60px);border:0;background:#000}
-#gamePanelBar{height:60px;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#070707;color:#ddd}
+#gamePanelBar{height:60px;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#070707;color:#fff}
 .gp-controls{display:flex;gap:8px;align-items:center}
-.gp-btn{background:#111;color:#fff;border:1px solid #333;padding:8px 10px;border-radius:6px;cursor:pointer}
+.gp-btn{background:#111;color:#00bfff;border:1px solid #0b488e;padding:8px 10px;border-radius:6px;cursor:pointer;font-family:'Press Start 2P';transition:0.3s}
+.gp-btn:hover{box-shadow:0 0 15px #4da6ff}
 #customizePanel{display:none;width:320px;background:#0b0b0b;border:2px solid #2b1f4a;padding:12px;border-radius:8px;margin-top:14px}
 #customizePanel label{display:block;margin:8px 0;font-size:12px;color:#cfdcff}
 #customizePanel input[type=color]{width:48px;height:32px;border:0;padding:0}
 #customizePanel select{width:100%;padding:6px;border-radius:6px;background:#111;color:#fff;border:1px solid #333}
-#customizeBtn{margin-top:12px;padding:10px 16px;background:#4da6ff;color:black;border:none;border-radius:8px;cursor:pointer}
 .socials{margin-top:18px;width:100%;max-width:980px;border-top:1px solid #111;padding-top:12px;display:flex;flex-direction:column;align-items:center}
-.socials h3{margin:6px;color:#00bfff}
+.socials h3{margin:6px;color:#00bfff;font-family:'Press Start 2P'}
 .social-icons{display:flex;gap:12px}
-.social-link{display:flex;align-items:center;gap:8px;padding:8px 10px;background:#0e0e0e;border-radius:8px;color:#cfeeff;text-decoration:none;border:1px solid #222}
+.social-link{display:flex;align-items:center;gap:8px;padding:8px 10px;background:#0e0e0e;border-radius:8px;color:#cfeeff;text-decoration:none;border:1px solid #222;font-family:'Press Start 2P'}
 .social-link svg{width:18px;height:18px}
-#loadingScreen{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);color:#fff;z-index:10001;align-items:center;justify-content:center;flex-direction:column}
+#loadingScreen{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);color:#fff;z-index:10001;align-items:center;justify-content:center;flex-direction:column;font-family:'Press Start 2P'}
 #loadingMessage{font-size:18px;margin-top:12px;color:#d0d0ff}
 @media (max-width:480px){#mainTitle{font-size:20px}.game-title{font-size:11px}}
 </style>
@@ -47,7 +48,7 @@ html,body{height:100%;margin:0;padding:0;background:black;color:#fff;font-family
     <label>Background Color: <input id="bgPicker" type="color" value="#000000"></label>
     <label>Title Color: <input id="titlePicker" type="color" value="#00bfff"></label>
     <label>Accent Color: <input id="accentPicker" type="color" value="#00bfff"></label>
-    <label>Theme: <select id="themeSelect"><option value="default">Default</option><option value="neon">Neon</option><option value="retro">Retro</option></select></label>
+    <label>Font: <select id="fontSelect"><option value='"Press Start 2P", monospace'>Video Game Pixels</option><option value='Arial, sans-serif'>Arial</option><option value='Courier New, monospace'>Courier</option></select></label>
     <div style="display:flex;gap:8px;margin-top:8px">
       <button class="gp-btn" onclick="applyCustom(true)">Apply & Save</button>
       <button class="gp-btn" onclick="resetCustom()">Reset</button>
@@ -86,7 +87,7 @@ html,body{height:100%;margin:0;padding:0;background:black;color:#fff;font-family
   <div id="gamePanelBar">
     <div class="gp-controls">
       <button class="gp-btn" onclick="closeGame()">Close</button>
-      <button class="gp-btn" onclick="openFullscreen()">Fullscreen</button>
+      <button class="gp-btn" onclick="openFullscreen()">Execute Fullscreen</button>
       <button class="gp-btn" onclick="openAboutBlank()">Open about:blank</button>
       <button class="gp-btn" onclick="openBlob()">Open blob</button>
     </div>
@@ -105,26 +106,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   function updateClock(){const now=new Date();document.getElementById('clock').textContent=now.toLocaleTimeString();}
   setInterval(updateClock,1000);updateClock();
 
-  const verses=[
-    "I can do all things through Christ who strengthens me. – Philippians 4:13",
-    "Trust in the Lord with all your heart. – Proverbs 3:5",
-    "Be strong and courageous. – Joshua 1:9",
-    "The Lord is my shepherd; I shall not want. – Psalm 23:1",
-    "Walk by faith, not by sight. – 2 Corinthians 5:7"
-  ];
+  const verses=["I can do all things through Christ who strengthens me. – Philippians 4:13","Trust in the Lord with all your heart. – Proverbs 3:5","Be strong and courageous. – Joshua 1:9","The Lord is my shepherd; I shall not want. – Psalm 23:1","Walk by faith, not by sight. – 2 Corinthians 5:7"];
   const dayIndex=Math.floor(Date.now()/86400000)%verses.length;
   document.getElementById('verse').textContent=verses[dayIndex];
 
-  const messages=[
-    "Skibidi toilet is overrated",
-    "I made this cuz I'm bored",
-    "I'm wasting my time with these messages",
-    "I'd rather win",
-    "Loading your epic game...",
-    "Almost there gamer...",
-    "Booting pixels...",
-    "Generating skill issues..."
-  ];
+  const messages=["Skibidi toilet is overrated","I made this cuz I'm bored","I'm wasting my time with these messages","I'd rather win","Loading your epic game...","Almost there gamer...","Booting pixels...","Generating skill issues..."];
 
   document.querySelectorAll('.game-card').forEach(card=>{
     card.addEventListener('click',()=>{
@@ -146,10 +132,23 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.body.style.background=saved.bg;
     document.getElementById('mainTitle').style.color=saved.title;
     document.querySelectorAll('.game-title').forEach(el=>el.style.color=saved.accent);
+    document.body.style.fontFamily=saved.font;
   }
 
   window.toggleCustomize=()=>{const p=document.getElementById('customizePanel');p.style.display=p.style.display==='block'?'none':'block'}
-  window.applyCustom=(save)=>{const bg=document.getElementById('bgPicker').value;const title=document.getElementById('titlePicker').value;const accent=document.getElementById('accentPicker').value;document.body.style.background=bg;document.getElementById('mainTitle').style.color=title;document.querySelectorAll('.game-title').forEach(el=>el.style.color=accent);if(save){localStorage.setItem('jacob_custom',JSON.stringify({bg,title,accent}));}}
+  window.applyCustom=(save)=>{
+    const bg=document.getElementById('bgPicker').value;
+    const title=document.getElementById('titlePicker').value;
+    const accent=document.getElementById('accentPicker').value;
+    const font=document.getElementById('fontSelect').value;
+    document.body.style.background=bg;
+    document.getElementById('mainTitle').style.color=title;
+    document.querySelectorAll('.game-title').forEach(el=>el.style.color=accent);
+    document.body.style.fontFamily=font;
+    document.querySelectorAll('.gp-btn').forEach(btn=>btn.style.fontFamily=font);
+    document.querySelectorAll('.social-link').forEach(sl=>sl.style.fontFamily=font);
+    if(save){localStorage.setItem('jacob_custom',JSON.stringify({bg,title,accent,font}));}
+  }
   window.resetCustom=()=>{localStorage.removeItem('jacob_custom');location.reload()}
   window.closeGame=()=>{document.getElementById('gamePanel').style.display='none';document.getElementById('gameFrame').src=''}
   window.openFullscreen=()=>{const iframe=document.getElementById('gameFrame');if(iframe.requestFullscreen) iframe.requestFullscreen()}
