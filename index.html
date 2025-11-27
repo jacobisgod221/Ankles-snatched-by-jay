@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -264,7 +264,7 @@
     }
 
     function openBlob() {
-      const iframe = documt.getElementById('gameFrame');
+      const iframe = document.getElementById('gameFrame');
       fetch(iframe.src).then(r => r.text()).then(html => {
         const blob = new Blob([html], {type:'text/html'});
         const url = URL.createObjectURL(blob);
@@ -272,24 +272,5 @@
       });
     }
   </script>
-</body>
-</html    </div>
-    <div class="game">
-      <a class="game-link" href="Kindergarten 2.html" target="_blank">🎮</a>
-      <div class="game-title">Kindergarten 2</div>
-    </div>
-    <div class="game">
-      <a class="game-link" href="Kindergarten 3.html" target="_blank">🎮</a>
-      <div class="game-title">Kindergarten 3</div>
-    </div>
-    <div class="game">
-      <a class="game-link" href="Minecraft 1.21.4.html" target="_blank">🎮</a>
-      <div class="game-title">Minecraft 1.21.4</div>
-    </div>
-    <div class="game">
-      <a class="game-link" href="Subway Surfers_ San Francisco.html" target="_blank">🎮</a>
-      <div class="game-title">Subway Surfers: SF</div>
-    </div>
-  </div>
 </body>
 </html>
